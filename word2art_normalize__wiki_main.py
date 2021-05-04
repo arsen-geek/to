@@ -7,7 +7,7 @@ def word2art(word, num = 1):
     lemma = normalize(word)
     article = ''
     for el in lemma:
-        article += wiki_main(el, num)
+        article += wiki_main(el, num) + '\n'
     return article
 
 def normalize(word):
