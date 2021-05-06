@@ -3,9 +3,11 @@ from selenium import webdriver
 from TikTokApi import TikTokApi
 
 
+driver = webdriver.Chrome()
+api = TikTokApi.get_instance()
+
+    
 def tiktoxt(hashtag):
-    driver = webdriver.Chrome()
-    api = TikTokApi.get_instance()
     try:
         dct = random.choice(api.by_hashtag(hashtag, count=5))
     except:
