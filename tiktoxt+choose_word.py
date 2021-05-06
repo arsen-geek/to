@@ -20,3 +20,4 @@ def choose_word(li_words):
         link = tiktoxt(word)
         if link:
             return link
+    return ''
