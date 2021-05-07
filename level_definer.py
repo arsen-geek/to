@@ -2,11 +2,11 @@ from statistics import median
 import csv
 
 alephA1 = 9708.2
-# alephA1 = ?
-# alephA1 = ?
-# alephA1 = ?
-# alephA1 = ?
-# alephA1 = ?
+# alephA2 = ?
+# alephB1= ?
+# alephB2 = ?
+# alephC1 = ?
+# alephC2 = ?
 
 #функция составляет словарь заданного уровня
 def level_dictionary(level):
