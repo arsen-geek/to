@@ -1,4 +1,5 @@
 import csv
+import re
 import word2art_normalize__wiki_main as p #импортирую две функции из файла word2art
 
 #тут будут все медианные значения для 6 уровней, их легче сразу посчитать
@@ -17,10 +18,12 @@ def level_dictionary(level):
 #на вход подаётся текст и уровень, выводятся слова, сложные для этого уровня
 def hard_words_search(text, level):
     jd = level_dictionary(level)
-    text = p.txt_clean(text)
     h_list = []
     for x in text.split():
-        word = p.normalize(x)[0]
+        word_clean = re.findall(r'[А-яЁё-]+', x)
+        if not word_clean:
+            continue
+        word = p.normalize(word_clean[0])[0]
         try:
             if jd[word] <= alephA1 and not (word in h_list):
                 h_list.append(word)
