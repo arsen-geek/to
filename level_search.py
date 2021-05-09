@@ -1,23 +1,21 @@
-import csv
 import re
+import json
 import word2art_normalize__wiki_main as p #импортирую две функции из файла word2art
 
 #тут будут все медианные значения для 6 уровней, их легче сразу посчитать
-alephA1 = 9708.2
-
-#функция составляет словарь вида слово:его значение алеф
-def level_dictionary(level):
-    just_dict = {}
-    filename = level + '.txt'
-    with open('freqrnc2011.csv', encoding='utf-8') as csvfile:
-        reader = csv.DictReader(csvfile, delimiter='\t')
-        for row in reader:
-            just_dict.update({row['Lemma']: float(row['Freq(ipm)'])*float(row['D'])})
-    return just_dict
+level2aleph = {
+    'A1': 9708.2, 
+    'A2': 0,
+    'B1': 0,
+    'B2': 0,
+    'C1': 0,
+    'C2': 0
+}
 
 #на вход подаётся текст и уровень, выводятся слова, сложные для этого уровня
 def hard_words_search(text, level):
-    jd = level_dictionary(level)
+    with open('aleph.json', encoding='utf-8') as f:
+        jd = json.load(f)
     h_list = []
     for x in text.split():
         word_clean = re.findall(r'[А-яЁё-]+', x)
@@ -25,7 +23,7 @@ def hard_words_search(text, level):
             continue
         word = p.normalize(word_clean[0])[0]
         try:
-            if jd[word] <= alephA1 and not (word in h_list):
+            if jd[word] <= level2aleph[level] and not (word in h_list):
                 h_list.append(word)
         except:
             pass
