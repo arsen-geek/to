@@ -10,6 +10,14 @@ def word2art(word, num = 1):
         article += wiki_main(el, num) + '\n'
     return article
 
+def is_POS_bad(lemma): #говорит, нужно ли выкинуть слово по его части речи
+    parse_results = analyzer.parse(lemma)[0]
+    pos = parse_results.tag.POS
+    if pos in ['NOUN', 'ADJF', 'ADJS', 'COMP', 'VERB', 'INFN',
+                'PRTF', 'PRTS', 'GRND', 'NUMR', 'ADVB', 'PRED']:
+        return False
+    return True
+
 def normalize(word):
     parse_results = analyzer.parse(word)
     lemmata = []
