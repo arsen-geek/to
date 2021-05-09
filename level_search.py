@@ -23,7 +23,7 @@ def hard_words_search(text, level):
             continue
         word = p.normalize(word_clean[0])[0]
         try:
-            if jd[word] <= level2aleph[level] and not (word in h_list):
+            if jd[word] <= level2aleph[level] and not (word in h_list) and not p.is_POS_bad(word)::
                 h_list.append(word)
         except:
             pass
