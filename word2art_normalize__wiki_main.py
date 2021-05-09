@@ -46,7 +46,7 @@ def txt_clean(text_0):
     return text_1
 
 def meanings(rus, num):
-    meaning = re.findall(r'<h4>.+?Значение.+?(<ol><li>.+?</ol>)', rus, re.DOTALL) # статьи целиком на каждый омоним
+    meaning = re.findall(r'<h4>[^\n]+?Значение.+?(<ol><li>.+?</ol>)', rus, re.DOTALL) # статьи целиком на каждый омоним
     all_m = []
     for word in meaning:
         w_m = re.findall(r'<li>.+?</li>', word) # все определения на один омоним
