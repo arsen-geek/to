@@ -14,7 +14,7 @@ def is_POS_bad(lemma): #говорит, нужно ли выкинуть сло�
     parse_results = analyzer.parse(lemma)[0]
     pos = parse_results.tag.POS
     if pos in ['NOUN', 'ADJF', 'ADJS', 'COMP', 'VERB', 'INFN',
-                'PRTF', 'PRTS', 'GRND', 'NUMR', 'ADVB', 'PRED']:
+                'PRTF', 'PRTS', 'GRND', 'ADVB', 'PRED']:
         return False
     return True
 
