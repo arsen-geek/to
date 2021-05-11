@@ -1,12 +1,12 @@
 from statistics import median
 import csv
 
-alephA1 = 9708.2
+alephA1 = 97.082
 # alephA2 = ?
 # alephB1= ?
 # alephB2 = ?
 # alephC1 = ?
-# alephC2 = ?
+alephC2 = 1.7955
 
 #функция составляет словарь заданного уровня
 def level_dictionary(level):
@@ -20,6 +20,6 @@ def level_dictionary(level):
         reader = csv.DictReader(csvfile, delimiter = '\t')
         for row in reader:
             if row['Lemma'] in level_words:
-                level_dict.update({row['Lemma'] : float(row['Freq(ipm)'])*float(row['D'])})
+                level_dict.update({row['Lemma'] : float(row['Freq(ipm)'])*float(row['D']) / 100 })
                 level_words.remove(row['Lemma'])
     return (median(level_dict.values()))
