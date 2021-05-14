@@ -11,7 +11,7 @@ have_text = False
 
 def return_words(text, level):
     link = ti.choose_word(l.hard_words_search(text, level))
-    x = l.HardWords(text, level) + '\n' + link
+    x = l.HardWords(text, level) + '\n' + 'Отдохните от учёбы! Погрузитесь в русский тикток:' + link
     if len(x) > 1:
         return x
     else:
@@ -19,7 +19,7 @@ def return_words(text, level):
 
 @bot.message_handler(commands=['help'])
 def send_help(message):
-    bot.reply_to(message, "Это бот-помощник изучающим РКИ. Введите текст и ваш уровень владения языком и бот выведет вам все слова, которые вы можете не знать в этом тексте. Чтобы начать, нажмите /start.")
+    bot.reply_to(message, "Это бот-помощник изучающим РКИ. Введите текст и ваш уровень владения языком, а бот выведет вам все слова, которые вы можете не знать в этом тексте и тикток по одному из слов. Чтобы начать, нажмите /start.")
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
     bot.reply_to(message, "Здравствуйте! Давайте начинать! С каким текстом работаем сегодня?")

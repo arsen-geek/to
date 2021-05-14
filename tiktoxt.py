@@ -7,7 +7,8 @@ chrome_options.add_argument("--headless")
 chrome_options.add_argument("--disable-gpu")
 browser = webdriver.Chrome(chrome_options=chrome_options)
 
-api = TikTokApi.get_instance()
+verifyFp='verify_koo95imu_ZYCoNhhA_ed3X_4rl1_9QTs_SX65bEiiFtMl'
+api = TikTokApi.get_instance(customverifyFp=verifyFp)
 dummylink = 'https://vk.com/katakhma'
 
 def tiktoxt(hashtag):
