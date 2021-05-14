@@ -2,7 +2,7 @@ import re
 import json
 import word2art_normalize__wiki_main as p #импортирую две функции из файла word2art
 
-#тут будут все медианные значения для 6 уровней, их легче сразу посчитать
+# пороговые значения для уровней
 level2aleph = {
     'A1': 97.082, 
     'A2': 92,
