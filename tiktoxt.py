@@ -9,14 +9,12 @@ browser = webdriver.Chrome(chrome_options=chrome_options)
 
 verifyFp='verify_koo95imu_ZYCoNhhA_ed3X_4rl1_9QTs_SX65bEiiFtMl'
 api = TikTokApi.get_instance(customverifyFp=verifyFp)
-dummylink = 'https://vk.com/katakhma'
 
 def tiktoxt(hashtag):
     try:
         dct = random.choice(api.by_hashtag(hashtag, count=5))
-    except AssertionError as error:
-        print(error)
-        return dummylink
+    except:
+        return ''
     link = 'https://www.tiktok.com/@' + dct['author']['id'] + '/video/' + dct['video']['id']
     return link
 

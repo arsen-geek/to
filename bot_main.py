@@ -3,6 +3,7 @@ import level_search as l
 import tiktoxt as ti
 import telebot
 from telebot import types
+from telebot import util
 
 token = "1698176432:AAG2dn_P2a64nOzqh-mpj2Rku19hFz_4xQE"
 bot = telebot.TeleBot(token, parse_mode=None, threaded=False)
@@ -30,6 +31,7 @@ def send_welcome(message):
 
 @bot.message_handler(func=lambda message: message.text in ('A1', 'A2', 'B1', 'B2', 'C1', 'C2'))
 def getting_level(message):
+    cid = message.chat.id
     global level
     global have_level
     global have_text
@@ -40,12 +42,17 @@ def getting_level(message):
         bot.reply_to(message, "Теперь введите текст!", reply_markup=hideboard)
     else:
         hideboard=types.ReplyKeyboardRemove()
-        bot.reply_to(message, return_words(text, level), reply_markup=hideboard)
+        bot.reply_to(message, 'Список слов, которые вы можете не знать:', reply_markup=hideboard)
+        large_text = return_words(text, level)
+        splitted_text = util.split_string(large_text, 3000)
+        for message_text in splitted_text:
+            bot.send_message(cid, message_text)
         have_text = False
         have_level = False
 
 @bot.message_handler(func=lambda message: True)
 def getting_text(message):
+    cid = message.chat.id
     global text
     global have_text
     global have_level
@@ -64,7 +71,11 @@ def getting_text(message):
         bot.reply_to(message, "Теперь выберите свой уровень:", reply_markup=markup)
     else:
         hideboard=types.ReplyKeyboardRemove()
-        bot.reply_to(message, return_words(text, level), reply_markup=hideboard)
+        bot.reply_to(message, 'Список слов, которые вы можете не знать:', reply_markup=hideboard)
+        large_text = return_words(text, level)
+        splitted_text = util.split_string(large_text, 3000)
+        for message_text in splitted_text:
+            bot.send_message(cid, message_text)
         have_text = False
         have_level = False
 
